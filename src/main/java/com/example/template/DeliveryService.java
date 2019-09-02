@@ -33,12 +33,12 @@ public class DeliveryService {
         try {
             orderPlaced = objectMapper.readValue(message, OrderPlaced.class);
 
-            System.out.println(" #### type = " + orderPlaced.getType());
+            System.out.println(" #### type = " + orderPlaced.getEventType());
 
             /**
              * 주문이 들어옴 -> 배송 시작 이벤트 발송
              */
-            if( orderPlaced.getType() != null && orderPlaced.getType().equals(OrderPlaced.class.getSimpleName())){
+            if( orderPlaced.getEventType() != null && orderPlaced.getEventType().equals(OrderPlaced.class.getSimpleName())){
 
                 Delivery delivery = new Delivery();
                 delivery.setOrderId(orderPlaced.getOrderId());
@@ -50,7 +50,7 @@ public class DeliveryService {
             /**
              * 배송이 시작됨 -> 배송 완료 이벤트 발송
              */
-            }else if( orderPlaced.getType() != null && orderPlaced.getType().equals(DeliveryStarted.class.getSimpleName())){
+            }else if( orderPlaced.getEventType() != null && orderPlaced.getEventType().equals(DeliveryStarted.class.getSimpleName())){
 
                 DeliveryStarted deliveryStarted = objectMapper.readValue(message, DeliveryStarted.class);
 

@@ -1,10 +1,7 @@
 package com.example.template;
 
-import java.io.Serializable;
+public class OrderPlaced  extends AbstractEvent {
 
-public class OrderPlaced implements Serializable {
-
-    private String type;
     private String stateMessage = "주문이 들어옴";
 
     private Long orderId;
@@ -15,14 +12,6 @@ public class OrderPlaced implements Serializable {
 
     public OrderPlaced(){
 
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getStateMessage() {

@@ -1,8 +1,7 @@
 package com.example.template;
 
-public class DeliveryCompleted {
+public class DeliveryCompleted extends AbstractEvent{
 
-    private String type ;
     private String stateMessage = "배송이 완료됨";
 
     private Long deliveryId;
@@ -12,14 +11,7 @@ public class DeliveryCompleted {
     private String deliveryState;
 
     public DeliveryCompleted(){
-        this.setType(this.getClass().getSimpleName());
-    }
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+        this.setEventType(this.getClass().getSimpleName());
     }
 
     public String getStateMessage() {
