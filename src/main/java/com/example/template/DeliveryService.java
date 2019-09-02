@@ -8,6 +8,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -22,7 +23,7 @@ public class DeliveryService {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
-    @KafkaListener(topics = "eventTopic")
+    @KafkaListener(topics = "${eventTopic}")
     public void onListener(@Payload String message, ConsumerRecord<?, ?> consumerRecord) {
         System.out.println("##### listener : " + message);
 
@@ -74,7 +75,9 @@ public class DeliveryService {
                     throw new RuntimeException("JSON format exception", e);
                 }
 
-                ProducerRecord producerRecord = new ProducerRecord<>("eventTopic", json);
+                Environment env = Application.applicationContext.getEnvironment();
+                String topicName = env.getProperty("eventTopic");
+                ProducerRecord producerRecord = new ProducerRecord<>(topicName, json);
                 kafkaTemplate.send(producerRecord);
 
             }

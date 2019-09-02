@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.BeanUtils;
+import org.springframework.core.env.Environment;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import javax.persistence.*;
@@ -81,7 +82,9 @@ public class Delivery {
         }
 
         if( json != null ){
-            ProducerRecord producerRecord = new ProducerRecord<>("eventTopic", json);
+            Environment env = Application.applicationContext.getEnvironment();
+            String topicName = env.getProperty("eventTopic");
+            ProducerRecord producerRecord = new ProducerRecord<>(topicName, json);
             kafkaTemplate.send(producerRecord);
         }
     }
