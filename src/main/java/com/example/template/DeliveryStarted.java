@@ -1,5 +1,8 @@
 package com.example.template;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DeliveryStarted extends AbstractEvent{
 
     private String stateMessage = "배송이 시작됨";
@@ -12,6 +15,8 @@ public class DeliveryStarted extends AbstractEvent{
 
     public DeliveryStarted(){
         this.setEventType(this.getClass().getSimpleName());
+        SimpleDateFormat defaultSimpleDateFormat = new SimpleDateFormat("YYYYMMddHHmmss");
+        this.timestamp = defaultSimpleDateFormat.format(new Date());
     }
 
     public String getStateMessage() {
