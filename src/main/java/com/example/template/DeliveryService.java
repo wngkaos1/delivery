@@ -56,8 +56,7 @@ public class DeliveryService {
 
                 DeliveryStarted deliveryStarted = objectMapper.readValue(message, DeliveryStarted.class);
 
-                Delivery delivery = new Delivery();
-                delivery.setDeliveryId(deliveryStarted.getDeliveryId());
+                Delivery delivery = deliveryRepository.findById(deliveryStarted.getDeliveryId()).get();
                 delivery.setDeliveryState(DeliveryCompleted.class.getSimpleName());
                 deliveryRepository.save(delivery);
 
