@@ -7,6 +7,8 @@ public class OrderPlaced  extends AbstractEvent {
     private Long orderId;
     private String productName;
     private int quantity;
+
+    private String customerId;
     private String customerName;
     private String customerAddr;
 
@@ -44,6 +46,14 @@ public class OrderPlaced  extends AbstractEvent {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getCustomerName() {

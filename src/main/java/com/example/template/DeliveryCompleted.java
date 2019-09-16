@@ -9,6 +9,7 @@ public class DeliveryCompleted extends AbstractEvent{
 
     private Long deliveryId;
     private Long orderId;
+    private String customerId;
     private String customerName;
     private String deliveryAddress;
     private String deliveryState;
@@ -25,6 +26,14 @@ public class DeliveryCompleted extends AbstractEvent{
 
     public void setStateMessage(String stateMessage) {
         this.stateMessage = stateMessage;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getCustomerName() {

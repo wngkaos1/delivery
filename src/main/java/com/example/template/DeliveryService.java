@@ -44,6 +44,7 @@ public class DeliveryService {
                 Delivery delivery = new Delivery();
                 delivery.setOrderId(orderPlaced.getOrderId());
                 delivery.setDeliveryAddress(orderPlaced.getCustomerAddr());
+                delivery.setCustomerId(orderPlaced.getCustomerId());
                 delivery.setCustomerName(orderPlaced.getCustomerName());
                 delivery.setDeliveryState(DeliveryStarted.class.getSimpleName());
                 deliveryRepository.save(delivery);
@@ -66,6 +67,7 @@ public class DeliveryService {
                     DeliveryCompleted deliveryCompleted = new DeliveryCompleted();
                     deliveryCompleted.setOrderId(deliveryStarted.getOrderId());
                     deliveryCompleted.setDeliveryId(deliveryStarted.getDeliveryId());
+                    deliveryCompleted.setCustomerId(deliveryStarted.getCustomerId());
                     deliveryCompleted.setCustomerName(deliveryStarted.getCustomerName());
                     deliveryCompleted.setDeliveryAddress(deliveryStarted.getDeliveryAddress());
                     deliveryCompleted.setDeliveryState(DeliveryCompleted.class.getSimpleName());
