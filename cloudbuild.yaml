@@ -38,8 +38,8 @@ steps:
       - -a=$_PROJECT_NAME
       - --image=gcr.io/$PROJECT_ID/$_PROJECT_NAME:$COMMIT_SHA
       - --expose=8080
-      - --location="$${{CLOUDSDK_COMPUTE_ZONE}}"
-      - --cluster="$${{CLOUDSDK_CONTAINER_CLUSTER}}"
+      - --location=$CLOUDSDK_COMPUTE_ZONE
+      - --cluster=$CLOUDSDK_CONTAINER_CLUSTER
 #  - id: 'deploy'
 #    name: 'gcr.io/cloud-builders/gcloud'
 #    entrypoint: 'bash'
