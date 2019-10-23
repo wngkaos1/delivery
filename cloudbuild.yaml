@@ -58,7 +58,6 @@ steps:
         gcloud container clusters get-credentials "$${CLOUDSDK_CONTAINER_CLUSTER}" \
           --project "$${PROJECT}" \
           --zone "$${CLOUDSDK_COMPUTE_ZONE}"
-
         cat <<EOF | kubectl apply -f -
         apiVersion: v1
         kind: Service
@@ -73,7 +72,6 @@ steps:
           selector:
             app: $_PROJECT_NAME
         EOF
-
         cat <<EOF | kubectl apply -f -
         apiVersion: apps/v1
         kind: Deployment
@@ -97,9 +95,8 @@ steps:
                   ports:
                     - containerPort: 8080
         EOF
-
 options:
   env:
     #    # location/name of GKE cluster (used by all kubectl commands)
     - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
-    - CLOUDSDK_CONTAINER_CLUSTER=event-storming-market
+    - CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1
